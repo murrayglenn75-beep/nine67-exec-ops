@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { createBrowserSupabaseClient } from "@/lib/supabase-browser";
 
 const LINKS = [
   { href: "/", label: "This Week" },
@@ -13,6 +14,16 @@ const LINKS = [
 
 export function Nav() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  if (pathname === "/login") return null;
+
+  async function logout() {
+    const supabase = createBrowserSupabaseClient();
+    await supabase.auth.signOut();
+    router.push("/login");
+    router.refresh();
+  }
 
   return (
     <nav className="border-b border-zinc-800 bg-[#08090a]">
@@ -20,7 +31,7 @@ export function Nav() {
         <span className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
           Signal Desk
         </span>
-        <div className="flex gap-6">
+        <div className="flex flex-1 gap-6">
           {LINKS.map((link) => {
             const active = pathname === link.href;
             return (
@@ -36,6 +47,13 @@ export function Nav() {
             );
           })}
         </div>
+        <button
+          type="button"
+          onClick={logout}
+          className="font-mono text-xs uppercase tracking-wide text-zinc-500 transition-colors hover:text-orange-300"
+        >
+          Log out
+        </button>
       </div>
     </nav>
   );
