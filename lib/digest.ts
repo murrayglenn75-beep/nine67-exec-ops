@@ -18,6 +18,7 @@ interface RevenueCommitmentRow {
 }
 
 export interface DigestProject {
+  id: number;
   name: string;
   client: string;
   status: { normalized: string; raw: string | null };
@@ -93,6 +94,7 @@ export async function buildDigest(): Promise<Digest> {
 
   const digestProjects: DigestProject[] = signals.map(
     ({ project, normalizedStatus, dueDate, burnRate, flags }) => ({
+      id: project.id,
       name: project.name,
       client: clientNameById.get(project.client_id) ?? "Unknown client",
       status: { normalized: normalizedStatus, raw: project.status },

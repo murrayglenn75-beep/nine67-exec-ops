@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
-import type { Digest } from "./digest";
+import type { Digest, DigestProject } from "./digest";
 
 const MODEL = "claude-sonnet-5";
 
@@ -47,6 +47,28 @@ export async function generateWeeklyBrief(params: {
     max_tokens: 2048,
     system: buildGroundingSystemPrompt(digest),
     messages: [{ role: "user", content: BRIEF_INSTRUCTION }],
+  });
+
+  return response.content
+    .filter((block): block is Anthropic.TextBlock => block.type === "text")
+    .map((block) => block.text)
+    .join("");
+}
+
+export async function explainProjectRisk(params: {
+  client: Anthropic;
+  digest: Digest;
+  project: DigestProject;
+}): Promise<string> {
+  const { client, digest, project } = params;
+
+  const instruction = `Explain the risk on "${project.name}" (client: ${project.client}) in under 120 words. Cover, as flowing prose (no headers or bullet lists): (1) what's driving the risk, citing the specific flags and numbers behind it, (2) what's uncertain or missing in the data for this project, (3) one concrete, specific next action to recommend. Executive tone.`;
+
+  const response = await client.messages.create({
+    model: MODEL,
+    max_tokens: 1024,
+    system: buildGroundingSystemPrompt(digest),
+    messages: [{ role: "user", content: instruction }],
   });
 
   return response.content

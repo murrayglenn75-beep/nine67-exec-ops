@@ -7,6 +7,7 @@ import {
   type TeamRow,
 } from "@/lib/signals";
 import { FlagPill } from "@/app/components/FlagPill";
+import { ExplainRiskButton } from "@/app/components/ExplainRiskButton";
 
 export const dynamic = "force-dynamic";
 
@@ -166,10 +167,13 @@ function ProjectCard({
       </dl>
 
       {flags.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 border-t border-zinc-800 pt-4">
-          {flags.map((flag) => (
-            <FlagPill key={flag.code} flag={flag} />
-          ))}
+        <div className="border-t border-zinc-800 pt-4">
+          <div className="flex flex-wrap gap-1.5">
+            {flags.map((flag) => (
+              <FlagPill key={flag.code} flag={flag} />
+            ))}
+          </div>
+          <ExplainRiskButton projectId={project.id} />
         </div>
       )}
     </article>
