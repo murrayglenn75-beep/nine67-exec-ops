@@ -100,10 +100,7 @@ export default async function ProjectsPage() {
       <div className="mx-auto max-w-6xl px-6 py-12 sm:px-10">
         <header className="mb-10 flex items-baseline justify-between border-b border-zinc-800 pb-6">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
-              Signal Desk
-            </p>
-            <h1 className="mt-2 font-sans text-3xl font-semibold tracking-tight text-zinc-50">
+            <h1 className="font-sans text-3xl font-semibold tracking-tight text-zinc-50">
               Projects
             </h1>
           </div>
