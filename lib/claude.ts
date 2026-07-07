@@ -33,6 +33,28 @@ DIGEST:
 ${JSON.stringify(digest)}`;
 }
 
+const BRIEF_INSTRUCTION =
+  "Write this week's executive brief in exactly 4 short paragraphs, covering in order: (1) what needs attention this week, (2) client risk, (3) capacity and allocation issues, (4) revenue at risk this quarter. Each paragraph is at most 3 sentences — synthesize and name only the highest-priority items per section, not every flagged project. Plain prose, no headers or bullet lists.";
+
+export async function generateWeeklyBrief(params: {
+  client: Anthropic;
+  digest: Digest;
+}): Promise<string> {
+  const { client, digest } = params;
+
+  const response = await client.messages.create({
+    model: MODEL,
+    max_tokens: 2048,
+    system: buildGroundingSystemPrompt(digest),
+    messages: [{ role: "user", content: BRIEF_INSTRUCTION }],
+  });
+
+  return response.content
+    .filter((block): block is Anthropic.TextBlock => block.type === "text")
+    .map((block) => block.text)
+    .join("");
+}
+
 export function streamAskResponse(params: {
   client: Anthropic;
   digest: Digest;
