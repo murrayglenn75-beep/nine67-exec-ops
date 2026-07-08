@@ -1,9 +1,9 @@
-const brlFormatter = new Intl.NumberFormat("pt-BR", {
+const usdFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
-  currency: "BRL",
+  currency: "USD",
   maximumFractionDigits: 0,
 });
 
-export function formatBRL(amount: number): string {
-  return brlFormatter.format(amount);
+export function formatUSD(amount: number): string {
+  return usdFormatter.format(amount);
 }

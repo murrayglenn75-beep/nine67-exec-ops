@@ -74,7 +74,7 @@ create table projects (
   -- cadences ("monthly"). Parsers must fail gracefully and flag what they
   -- can't parse, not throw.
   due_date        text,
-  -- BRL. NULL where budget hasn't been finalized with the client yet —
+  -- USD. NULL where budget hasn't been finalized with the client yet —
   -- a real gap, not a data-entry oversight, so it must render as a flag,
   -- not a fake zero.
   budget          numeric,

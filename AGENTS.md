@@ -44,7 +44,7 @@ supabase-js accepts these transparently.
 
 ## Conventions
 - Server components by default; "use client" only where interactive.
-- Currency BRL. "Today" for staleness math = server date.
+- Currency USD. "Today" for staleness math = server date.
 - Keep AI context small: digest, not row dumps of everything.
 - Tone of UI copy: executive, plain verbs, no filler.
 - Dark instrument-panel aesthetic: near-black background, amber accent,

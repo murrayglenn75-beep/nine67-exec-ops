@@ -8,7 +8,7 @@ import {
 } from "@/lib/signals";
 import { FlagPill } from "@/app/components/FlagPill";
 import { ExplainRiskButton } from "@/app/components/ExplainRiskButton";
-import { formatBRL } from "@/lib/format";
+import { formatUSD } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -206,7 +206,7 @@ function BurnBar({
       <div className="flex items-center justify-between">
         <span className="text-zinc-500">Budget</span>
         <span className="font-mono text-zinc-200">
-          {spent != null ? formatBRL(spent) : "—"} / {formatBRL(budget)}
+          {spent != null ? formatUSD(spent) : "—"} / {formatUSD(budget)}
           {burnRate != null && (
             <span className="ml-1.5 text-zinc-500">({Math.round(pct)}%)</span>
           )}

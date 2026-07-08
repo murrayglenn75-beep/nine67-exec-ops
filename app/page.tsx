@@ -1,6 +1,6 @@
 import { createServerSupabaseClient } from "@/lib/supabase";
 import { computeProjectSignals, type ProjectRow, type TeamRow } from "@/lib/signals";
-import { formatBRL } from "@/lib/format";
+import { formatUSD } from "@/lib/format";
 import { FlagPill } from "@/app/components/FlagPill";
 import { BriefPanel } from "@/app/components/BriefPanel";
 
@@ -82,7 +82,7 @@ export default async function Home() {
             label="Flagged projects"
             value={`${flaggedProjectCount} / ${projects.length}`}
           />
-          <MetricCard label="Revenue at risk" value={formatBRL(revenueAtRisk)} />
+          <MetricCard label="Revenue at risk" value={formatUSD(revenueAtRisk)} />
           <MetricCard label="Over-allocated leads" value={String(overAllocatedLeadCount)} />
         </div>
 
