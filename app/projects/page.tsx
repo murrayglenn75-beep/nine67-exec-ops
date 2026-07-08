@@ -8,6 +8,7 @@ import {
 } from "@/lib/signals";
 import { FlagPill } from "@/app/components/FlagPill";
 import { ExplainRiskButton } from "@/app/components/ExplainRiskButton";
+import { formatBRL } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -37,16 +38,6 @@ function formatParsedDate(date: Date): string {
     year: "numeric",
     timeZone: "UTC",
   });
-}
-
-const currencyFormatter = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-  maximumFractionDigits: 0,
-});
-
-function formatBRL(amount: number): string {
-  return currencyFormatter.format(amount);
 }
 
 export default async function ProjectsPage() {
