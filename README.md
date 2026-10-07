@@ -2,6 +2,15 @@
 
 # Signal Desk
 
+## 30-second overview
+
+**Signal Desk is an AI-assisted executive operations dashboard for a growing agency.** It brings project health, client risk, team capacity, and weekly priorities into one place and uses grounded AI explanations rather than letting a model invent operational facts.
+
+**What I built:** a Next.js operations interface, project and client views, computed risk signals, capacity tracking, a weekly executive brief, and a grounded “Ask” experience backed by Supabase and Claude.
+
+**Why it matters:** leaders often have the data they need but not a fast way to see what requires attention. Signal Desk turns structured operating data into a concise decision-support view while explicitly saying when the data is insufficient.
+
+
 AI-powered executive operations tool for a growing agency. Built with Next.js, TypeScript, Tailwind, Supabase, and the Claude API, deployed on Vercel.
 
 Live demo: https://nine67-exec-ops.vercel.app
